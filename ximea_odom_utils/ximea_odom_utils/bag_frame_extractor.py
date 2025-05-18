@@ -18,8 +18,8 @@ class BagFrameExtractor(Node):
         super().__init__("bag_frame_extractor")
 
         self.image_topic = "/image_raw"
-        self.frame_number = 10
-        self.output_path = "./src/ximea_feature_detection/frame.png"
+        self.frame_number = 250
+        self.output_path = "./src/ximea_feature_detection/frame15.png"
 
         self.bridge = CvBridge()
 
@@ -42,6 +42,9 @@ class BagFrameExtractor(Node):
 
     def image_callback(self, msg):
         self.frame_count += 1
+        self.get_logger().info(
+                    f"At frame {self.frame_count}"
+                )
 
         if self.frame_count == self.frame_number:
             try:
